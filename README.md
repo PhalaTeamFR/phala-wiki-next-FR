@@ -13,7 +13,7 @@
 </h3>
 
 <p align="center">
-  The go to source for your Phala documentation.
+  La source incontournable pour votre documentation Phala.
 </p>
 
 <p align="center">
@@ -31,37 +31,37 @@
   </a>
 </p>
 
-## Website
+## Site web
 
 [![Phala Wiki](https://user-images.githubusercontent.com/37558304/145890328-35ee96db-2713-4f53-8d62-d90aad16ab8c.png)](https://wiki.phala.network/)
 
-## Requirements
+## Pré-requis
 
-The phala documentation is build on "Doks". Doks uses npm to centralize dependency management, making it [easy to update](https://getdoks.org/docs/help/how-to-update/) resources, build tooling, plugins, and build scripts:
+La documentation phala est construite sur "Doks". Doks utilise npm pour centraliser la gestion des dépendances, ce qui facilite la mise à jour des ressources, des outils de construction, des plugins et des scripts de construction (https://getdoks.org/docs/help/how-to-update/) :
 
-- Download and install [Node.js](https://nodejs.org/) (it includes npm) for your platform.
+- Téléchargez et installez [Node.js] (https://nodejs.org/) (il inclut npm) pour votre plateforme.
 
-#### 1. To Contribute Clone this Repoitory
+#### 1. Pour contribuer, clonez ce répertoire
 
 ```bash
 git clone https://github.com/Phala-Network/phala-wiki-next.git my-doks-site && cd my-doks-site
 ```
 
-### 2. Install dependencies
+### 2. Installer les dépendances
 
 ```bash
 npm install
 ```
 
-### 3. Start development server
+### 3. Démarrer le serveur de développement
 
 ```bash
 npm run start
 ```
 
-## Other commands
+## Autres commandes
 
-Doks comes with [commands](https://getdoks.org/docs/prologue/commands/) for common tasks.
+Doks est livré avec [commands](https://getdoks.org/docs/prologue/commands/) pour les tâches courantes.
 
 ## Documentation
 
@@ -69,7 +69,7 @@ Doks comes with [commands](https://getdoks.org/docs/prologue/commands/) for comm
 - [Hugo](https://gohugo.io/documentation/)
 - [Doks](https://getdoks.org/)
 
-## Communities
+## Communautés
 
 - [Phala Community](https://phala.network/en/community)
 - [Netlify Community](https://community.netlify.com/)
