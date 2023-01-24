@@ -1,5 +1,5 @@
 ---
-title: Khala Governance
+title: Khala Gouvernance
 weight: 2003
 draft: false
 menu:
@@ -7,15 +7,16 @@ menu:
     parent: "khala-network"
 ---
 
-Khala and Phala adopt the same governance mechanism as Kusama and Polkadot. This is a relatively mature mechanism that governs to ensure the majority of the stake can always command a network. No matter whether the proposal is submitted by the public (PHA token holders) or the council, it will eventually have to go through a referendum where all holders, weighted by stake, make decisions.
+Khala et Phala adoptent le même mécanisme de gouvernance que Kusama et Polkadot. Il s'agit d'un mécanisme relativement mature qui régit de manière à ce que la majorité des participants puisse toujours commander un réseau. Peu importe que la proposition soit soumise par le public (détenteurs de jetons PHA) ou par le conseil, elle devra finalement passer par un référendum où tous les détenteurs, en fonction de leur staking, prennent des décisions.
 
-To dive deeply into Phala/Khala governance, please refer to the [Governance](/en-us/maintain/governance/1-participate-in-democracy/) section.
 
-## Council
+Pour approfondir la gouvernance Phala/Khala, veuillez vous référer à la section [Gouvernance](/en-us/maintain/governance/1-participate-in-democracy/).
 
-To represent passive stakeholders, Phala/Khala introduced the idea of a “council”. each council member represents an on-chain account. Phala and Khala share the same council which currently consists of 5 members. This is expected to increase over the next few months to 11 members. The council will end up having a fixed number of seats. Click [here](/en-us/maintain/governance/2-join-the-council/) to learn how to be part of it.
+## Conseil
 
-## Participate in Khala Democracy
+Pour représenter les parties prenantes passives, Phala/Khala ont introduit l'idée d'un "conseil". Chaque membre du conseil représente un compte on-chain. Phala et Khala partagent le même conseil qui est actuellement composé de 5 membres. Ce nombre devrait augmenter au cours des prochains mois pour atteindre 11 membres. Le conseil finira par avoir un nombre fixe de sièges. Cliquez [ici](/en-us/maintain/governance/2-join-the-council/) pour savoir comment en faire partie.
+
+## Participer à la démocratie de Khala
 
 <div class="mediaList">
   <div class="item" style="text-align:center">
@@ -35,6 +36,3 @@ To represent passive stakeholders, Phala/Khala introduced the idea of a “counc
      </a>
   </div>
 </div>
-
-Khala Governance
-Khala Polkadot.js
