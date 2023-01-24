@@ -7,13 +7,13 @@ menu:
     parent: "khala-network"
 ---
 
-Khala Network is the canary network of Phala Network launched on Kusama.
+Khala Network est le réseau canari de Phala Network lancé sur Kusama.
 
-## Overview
+## Vue d'ensemble
 
-Khala, which is responsible for the technical and economic testing of Phala Network (also known as the Phala Network on Kusama), went live in September 2021. The economic models of the Phala and Khala networks have now been merged after [Gemini Upgrade](https://khala.subsquare.io/democracy/referendum/27). Khala and Phala share the same responsibility for the overall network operations, providing decentralized cloud computing capabilities.
+Khala, qui est responsable des tests techniques et économiques de Phala Network, a été mis en ligne en septembre 2021. Les modèles économiques des réseaux Phala et Khala ont été fusionnés après la [mise à niveau Gemini](https://khala.subsquare.io/democracy/referendum/27). Khala et Phala partagent la même responsabilité pour l'ensemble des opérations du réseau, offrant ainsi des capacités décentralisées de cloud computing.
 
-### Resources
+### Ressources
 
 <div class="mediaList">
   <div class="item" style="text-align:center">
@@ -44,16 +44,16 @@ Khala, which is responsible for the technical and economic testing of Phala Netw
 
 ### Asset
 
-Khala and Phala have only one asset, PHA. K-PHA is the PHA asset circulating on Khala.
+Khala et Phala n'ont qu'un seul asset, PHA. K-PHA est l'asset PHA qui circule sur Khala.
 
 $$ K-PHA : ERC-20\ PHA : PHA = 1 : 1 : 1 $$
 
-(As of now, there is no platform other than Polkadot.js that supports PHA on Phala Network)
+(Pour l'instant, aucune autre plateforme que Polkadot.js ne prend en charge PHA sur Phala Network).
 
-You can transfer ERC-20 PHA and K-PHA on several decentralized and centralized platforms:
-- Decentralized platforms
-  - [SubBridge](/en-us/general/subbridge/tutorial/): a cross-chain hub incubated by Phala, few gas fees will be incurred for transfers.
-- Centralized platforms
+Vous pouvez transférer les ERC-20 PHA et K-PHA sur plusieurs plateformes décentralisées et centralisées :
+- Plateformes décentralisées
+  - [SubBridge](/en-us/general/subbridge/tutorial/): un hub multi-chaînes incubé par Phala, les transferts seront peu coûteux.
+- Plateformes centralisées
 <div class="mediaList">
 
   <div class="item" style="text-align:center">
@@ -107,8 +107,8 @@ You can transfer ERC-20 PHA and K-PHA on several decentralized and centralized p
 </div>
 
 
-## Launch Process
+## Processus de lancement
 
-Khala Network finished all launch plans, including enabling secure workers, removing Sudo, going live with governance, and opening a two-way cross-chain between Khala and Ethereum in SubBridge.
+Khala Network a terminé tous ses plans de lancement, y compris l'activation des workers sécurisés, la suppression de Sudo, la mise en service de la gouvernance et l'ouverture d'une chaîne croisée bidirectionnelle (2way) entre Khala et Ethereum dans SubBridge.
 
-Full events available in: <https://github.com/orgs/Phala-Network/projects/1>
+Tous les événements sont disponibles dans : <https://github.com/orgs/Phala-Network/projects/1>
