@@ -1,5 +1,5 @@
 ---
-title: Khala Worker Rewards
+title: Récompenses Workers Khala
 weight: 2004
 draft: false
 menu:
@@ -7,4 +7,4 @@ menu:
     parent: "khala-network"
 ---
 
-After [Gemini Upgrade](https://khala.subsquare.io/democracy/referendum/27), Khala and Phala share 70% PHA tokens of the total supply for workers' subsidy allocation. You can learn about the Supply-end Tokenomics details [here](/en-us/general/phala-network/tokenomics/).
+Après la [mise à niveau Gemini](https://khala.subsquare.io/democracy/referendum/27), Khala et Phala se partagent 70% des jetons PHA de l'offre totale pour l'allocation des subventions aux workers. Vous pouvez en savoir plus sur les Tokenomics de fin de distribution [ici](/en-us/general/phala-network/tokenomics/).
