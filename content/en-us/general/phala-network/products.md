@@ -1,5 +1,5 @@
 ---
-title: Phala Products
+title: Produits Phala
 weight: 1002
 draft: false
 menu:
@@ -13,39 +13,39 @@ menu:
 
 <!-- ![](https://miro.medium.com/max/1400/1*OWyWrBXtTEj4bHcAszSONQ.jpeg) -->
 
-Phat Contract is an innovative programming model enabling *Off-chain Computation*. It's also known as *Fat Contract* as a practice of the "Fat Protocol & Thin Application" concept, and for its rich functionalities compared with existing smart contracts.
+Le Phat Contract est un modèle de programmation innovant permettant la réalisation de calculs off-chain. Il est également connu sous le nom de *Fat Contract* en tant que pratique du concept "Fat Protocol & Thin Application", et pour ses riches fonctionnalités par rapport aux smart contracts existants.
 
-The Phat Contract inherits the self-enforcing and tamper-proof nature of smart contracts while introducing more advantages including:
+Le Phat Contract hérite de la nature auto-renforçante et inviolable des contrats intelligents tout en introduisant plus d'avantages, notamment :
 
-- Low-cost and zero-latency since most user interactions involve no on-chain transactions;
-- Supporting complex computation and long-live services without the worry about blocking the whole blockchain;
-- Native HTTP request support to connect multiple services;
+- Faible coût et temps de latence nul puisque la plupart des interactions avec les utilisateurs n'impliquent aucune transaction sur la chaîne ;
+- Prise en charge de calculs complexes et de services à longue durée de vie sans craindre de bloquer l'ensemble de la blockchain ;
+- Prise en charge des requêtes HTTP natives pour connecter plusieurs services ;
 
-Phat Contract focuses on serving Web3 backend function-level services and is meant to be a complement to existing smart contracts with its unique functionalities.
+Le Phat Contract se concentre sur les services Web3 au niveau des fonctions de backend et est destiné à compléter les contrats intelligents existants grâce à ses fonctionnalités uniques.
 
-The Phat Contract is designed for the following use cases:
+Le Phat Contract est conçu pour les cas d'utilisation suivants :
 
-- ***Low latency*** services like GameFi or Metaverse backends;
-- ***Compute-intensive*** applications like NFT rendering, machine learning, and big data analytics;
-- ***Privacy-preserving*** scenarios like a decentralized exchange and others where privacy matters;
-- ***Composable*** applications including Oracle, bots, and other applications involving one or more Web2/Web3 services;
+- ***Services à faible latence*** comme les backends de GameFi ou Metaverse ;
+- ***Applications à forte intensité de calcul***, telles que le rendu NFT, le machine learning et l'analyse des données volumineuses ;
+- ***Scénarios préservant la vie privée***, comme un échange décentralisé et d'autres où la vie privée est importante ;
+- ***Applications Composables***, notamment les Oracle, les bots et autres applications impliquant un ou plusieurs services Web2/Web3 ;
 
-> Learn [more](/en-us/build/general/intro/) about Phat Contract's unique features and use cases, or start building with it right now following our [tutorial](/en-us/build/getting-started/setup/).
+> Apprenez-en [plus](/en-us/build/general/intro/) sur les caractéristiques uniques et les cas d'utilisation du Phat Contract, ou commencez à construire avec celui-ci dès maintenant en suivant notre [tutoriel](/en-us/build/getting-started/setup/).
 
 ## SubBridge
 
 ![](/images/general/subbridge-intro.jpg)
 
-SubBridge is the cross-chain router of the parachains, bridging Dotsama and Ethereum and assets in other ecosystems. Instead of building the cross-chain bridge itself, SubBridge is meant to connect the existing bridging solutions and forward the assets across multiple blockchains. By integrating SubBridge, you can leverage all the supported bridging solutions in it.
+SubBridge est le routeur cross-chain des parachains, faisant le pont entre Dotsama et Ethereum et les actifs d'autres écosystèmes. Au lieu de construire lui-même le pont inter-chaînes, SubBridge est destiné à connecter les solutions de passerelles existantes et à transmettre les assets à travers plusieurs blockchains. En intégrant SubBridge, vous pouvez tirer parti de toutes les solutions de passerelle qu'il prend en charge.
 
-SubBridge is based on the "XCM + ChainBridge cross-chain protocol" to realize cross-chain transmission of assets and information.
+SubBridge est basé sur le "XCM + ChainBridge cross-chain protocol" pour réaliser la transmission cross-chain des assets et des informations.
 
-> Learn [more](/en-us/general/subbridge/intro/) about SubBridge and use it to transfer your assets across different chains, or follow the [Integration Guide](/en-us/general/subbridge/asset-integration/) to add support for your chain and asset.
+> Apprenez-en [plus](/en-us/general/subbridge/intro/) sur SubBridge et utilisez-le pour transférer vos assets entre différentes chaînes, ou suivez le [Guide d'intégration](/en-us/general/subbridge/asset-integration/) pour ajouter le support pour votre chaîne et votre asset.
 
 ## PhalaWorld
 
 ![](/images/general/phala_world.jpg)
 
-A Metaverse based on the Phala Network blockchain. PhalaWorld adopts the concept of Soulbound NFT to map the users' off-chain activities to the blockchain world.
+Un Metaverse basé sur la blockchain Phala Network. PhalaWorld adopte le concept de Soulbound NFT pour faire correspondre les activités off-chain des utilisateurs au monde de la blockchain.
 
-> Go to PhalaWorld [official website](https://www.phalaworld.com/).
+> Allez sur PhalaWorld [site officiel](https://www.phalaworld.com/).
