@@ -1,5 +1,5 @@
 ---
-title: "See also"
+title: "Voir aussi"
 weight: 1004
 draft: true
 menu:

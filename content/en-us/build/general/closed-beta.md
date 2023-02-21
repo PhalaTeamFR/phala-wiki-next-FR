@@ -7,62 +7,62 @@ menu:
     parent: "phat-general"
 ---
 
-Welcome to the Closed Beta test of Phat Contract!
+Bienvenue au test de la Closed Beta du Phat Contract !
 
-> If you haven't registered yet, fill in the [application form](https://docs.google.com/forms/u/0/d/1LUmSQ_7B3Yh7tNCPAluBUAwhAN0HjZ3b9wragWI1Bbs) to get involved.
+> Si vous n'êtes pas encore inscrit, remplissez le [formulaire de candidature](https://docs.google.com/forms/u/0/d/1LUmSQ_7B3Yh7tNCPAluBUAwhAN0HjZ3b9wragWI1Bbs) pour vous impliquer.
 
-## What you will experience
+## Ce que vous allez découvrir
 
-You will be able to use trustless off-chain computation that doesn't suffer from the limitations traditionally faced by Web3 computation.
+Vous serez en mesure d'utiliser un calcul off-chain sans tiers de confiance qui ne subit pas les limitations traditionnellement rencontrées par le calcul Web3.
 
-- Phala Network brings decentralization, scale, and security, and manages the deployment of your compute off-chain.
-- Phat Contract brings a quantum leap in capability, a serverless SDK you can write almost anything with.
+- Phala Network apporte la décentralisation, la scalabilité et la sécurité, en plus de gérer le déploiement de votre calcul off-chain.
+- Le Phat Contract fait un pas de géant en matière de capacité, un SDK serverless avec lequel vous pouvez écrire presque n'importe quoi.
 
-For the first time, you can easily implement important Web3 services on a decentralized infrastructure, like
+Pour la première fois, vous pouvez facilement mettre en œuvre d'importants services Web3 sur une infrastructure décentralisée, comme par exemple
 
-- Easily building decentralized Oracle;
-- Allowing customers to sign in to your DApps with Web2 accounts through OAuth;
-- Controlling your smart contracts even if they are on different chains;
-- Reading and storing data to any storage services while remaining private;
+- Construire facilement un Oracle décentralisé ;
+- Permettre aux clients de se connecter à vos DApps avec des comptes Web2 via OAuth ;
+- Contrôlez vos smart contracts même s'ils se trouvent sur des chaînes différentes ;
+- Lire et stocker des données sur n'importe quel service de stockage tout en restant privé ;
 
-and more for us to explore together.
+et bien d'autres choses à explorer ensemble.
 
-## Table of contents
+## Table des matières
 
-- [Getting Started](/en-us/build/getting-started/prep/) is prepared for everyone new to Phat Contract, even if you do not have any programming experience. It has no requirements on your operating system or environment. Follow our tutorial to:
-  - Generate the test account
-  - Try Phat Contract Console
-  - Deploy the pre-compiled contract to our testnet
-  - Invoke the contract, it will use its network access to read the Ethereum account balance for you
-- [Build on Phat Contract](/en-us/build/stateless/intro/) will lead you to config your environment and compile your first stateless DApp with Phat Contract. It covers all the basic information including:
-  - Environment setup
-  - Programming language basics
-  - User interaction
-  - Local unit test
-- [Store Contract States](/en-us/build/stateful/storage-hierarchy/) introduces the different storages you can utilize to store your contract states and data, including
-  - Volatile local cache
-  - Consistent on-chain storage
-  - External storage services
-- [Advanced Techniques](/en-us/build/advanced/system-contract/) includes advanced features like system contract and SideVM, which further extend the capabilities of Phat Contract.
-- [Blockchain Infrastructure](/en-us/build/infrastructure/blockchain-detail/) contains the system design of the underlying infrastructure that supports Phat Contract. It helps to understand how your contract is deployed and why it's safe.
+- La version [Getting Started](/en-us/build/getting-started/prep/) est préparée pour tous les nouveaux utilisateurs du Phat Contract, même si vous n'avez aucune expérience en programmation. Il n'a aucune exigence sur votre système d'exploitation ou votre environnement. Suivez notre tutoriel pour :
+  - Générer le compte de test
+  - Essayer la console Phat Contract
+  - Déployer le contrat précompilé sur notre réseau de test.
+  - Appelez le contrat, il utilisera son accès au réseau pour lire le solde du compte Ethereum pour vous.
+- Le document [Build on Phat Contract](/en-us/build/stateless/intro/) vous permettra de configurer votre environnement et de compiler votre première DApp sans état avec le Phat Contract. Il couvre toutes les informations de base, y compris :
+  - Configuration de l'environnement
+  - Les bases du langage de programmation
+  - Interaction avec l'utilisateur
+  - Test unitaire local
+- [Store Contract States](/en-us/build/stateful/storage-hierarchy/) présente les différents stockages que vous pouvez utiliser pour stocker vos états et données de contrat, notamment
+  - Cache local volatile
+  - Un stockage on-chain cohérent
+  - Services de stockage externe
+- [Advanced Techniques](/en-us/build/advanced/system-contract/) comprend des fonctionnalités avancées comme le contrat de système et SideVM, qui étendent encore les capacités du Phat Contract.
+- [Blockchain Infrastructure](/en-us/build/infrastructure/blockchain-detail/) contient la conception du système de l'infrastructure sous-jacente qui supporte le Phat Contract. Il permet de comprendre comment votre contrat est déployé et pourquoi il est sécurisé.
 
-## Other resources
+## Autres ressources
 
-- Code examples as your reference
+- Des exemples de code comme référence
     - <https://github.com/Phala-Network/awesome-phat-contracts>
     - <https://github.com/Phala-Network/phat-contract-examples>
-- Developer toolings
+- Outils pour les développeurs
     - Web console: [https://phat-cb.phala.network](https://phat-cb.phala.network/)
-        - Built out a frontend where you can deploy and interact with your contract
+        - Construit un front-end où vous pouvez déployer et interagir avec votre contrat.
     - Project manager
-        - Quickly get a blank template and spin up a local cluster for testing with https://github.com/l00k/devphase
-- Basic Libraries
-    - Storage support: Wrapped Filecoin, Arweave, Storj, and Amazon S3 with an S3-standard API
+        - Obtenez rapidement un modèle vierge et créez un cluster local pour le tester avec https://github.com/l00k/devphase.
+- Librairies de base
+    - Support de stockage : Prise en charge de Filecoin, Arweave, Storj et Amazon S3 avec une API standard S3
         - [https://crates.io/crates/pink-s3](https://crates.io/crates/pink-s3)
-    - Cross-chain transaction support: ETH and Substrate Tx's & Queries
+    - Support des transactions inter-chaînes : Tx et requêtes d'ETH et de Substrat
         - [https://crates.io/crates/pink-web3](https://crates.io/crates/pink-web3)
         - <https://github.com/Phala-Network/phat-offchain-rollup/tree/sub0-workshop/phat/crates/subrpc>
-- Advanced Library
-    - Stateful rollup: reliable cross-chain request processing
-        - Allows you to monitor the requests from EVM contracts and Substrate-based chains and reliably send cross-chain transactions as replies
+- Librairie avancée
+    - Stateful rollup : traitement sécurisé des demandes inter-chaînes
+        - Permet de surveiller les demandes des contrats EVM et des chaînes basées sur substrat et d'envoyer de manière sécurisée les transactions inter-chaînes en réponse.
         - <https://github.com/Phala-Network/phat-offchain-rollup/tree/sub0-workshop>
