@@ -1,5 +1,5 @@
 ---
-title: "Pay for Cloud Service"
+title: "Payer pour un service Cloud"
 weight: 1005
 menu:
   general:
@@ -8,200 +8,200 @@ menu:
 
 ## Introduction
 
-This version is written by [Samuel Häfner](https://samuelhaefner.github.io/). It complements [Phala Supply-end Tokenomics v0.9](/en-us/general/phala-network/tokenomics/) and defines the *Demand-End Tokenomics* in Phala Network, e.g, how developers and end-users pay for the computing services. It will be released as Phat Contract goes live. The exact problems addressed by this tokenomics are:
+Cette version est écrite par [Samuel Häfner](https://samuelhaefner.github.io/). Elle complète [Phala Supply-end Tokenomics v0.9](/en-us/general/phala-network/tokenomics/) et définit la *Demand-End Tokenomics* dans Phala Network, par exemple, comment les développeurs et les utilisateurs finaux paient pour les services informatiques. Il sera publié lorsque le contrat Phat sera mis en ligne. Les problèmes exacts abordés par cette tokenomics sont :
 
-- Computing power allocations among contract clusters and their end-users (contract deployers);
-- The algorithm for clusters-workers matching;
-- The mechanism of worker incentivization.
+- Calculer les allocations de la puissance entre les clusters de contrats et leurs utilisateurs finaux ("contract deployers") ;
+- L'algorithme de mise en correspondance des clusters et des workers ;
+- Le mécanisme d'incitation des workers.
 
-## Main characters
+## Personnages principaux
 
-| Character                          | Description                                                                                                                                                | Types            |
+| Characters                          | Description                                                                                                                                                | Types            |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| Contract Clusters (abbr. Clusters) | The runtime environments for specific contracts. A contract cluster is created and managed by its owner, and is backed by one or more workers.             | On-chain entity  |
-| Workers                            | The machines that contribute computing power to Phala Network. These were previously named *miners*. Anyone with the appropriate hardware can participate. | Physical machine |
-| End-users                          | The users or developers who deploy the Phat contracts to the contract cluster.                                                                             | On-chain entity  |
-| Contracts                          | The Phat contract instances.                                                                                                                               | On-chain entity  |
+| Contrat Clusters (abbr. Clusters) | Les environnements d'exécution pour des contrats spécifiques. Un Contrat Clusters est créé et géré par son propriétaire, et est soutenu par un ou plusieurs workers.             | Entité On-chain  |
+| Workers                            | Les machines qui contribuent à la puissance de calcul du réseau Phala. Elles étaient auparavant appelées *miners*. Toute personne disposant du matériel approprié peut y participer. | Machine physique |
+| Utilisateurs finaux                          | Les utilisateurs ou les développeurs qui déploient les Phat contracts  sur le contract cluster.                                                                             | Entité On-chain  |
+| Contrats                          | Le Phat contract instances.                                                                                                                               | Entité On-chain  |
 
-## How to pay for the computing services
+## Comment payer les services informatiques
 
-This section consists of 2 parts: query tokenomics and transaction tokenomics. It applies to all the public good clusters that are managed by Phala team. In the future, users will be allowed to create their clusters and define their own rules.
+Cette section se compose de 2 parties : la tokenomique des requêtes et la tokenomique des transactions. Elle s'applique à tous les clusters de biens publics qui sont gérés par l'équipe Phala. Dans le futur, les utilisateurs seront autorisés à créer leurs propres clusters et à définir leurs propres règles.
 
-> Every contract must have some stake
+> Chaque contrat doit avoir un intérêt
 
-### Query tokenomics
+### Requête tokenomique
 
-Phat Contract utilizes a very simple tokenomics for queries. The rules can be summarized below:
+Le Phat Contract utilise une tokenomique très simple pour les requêtes. Les règles peuvent être résumées ci-dessous :
 
-- The share of computing power a contract receives on each worker equals the stake’s share of that in the cluster;
-- Anyone can stake to any contract;
-- The stake can be adjusted or withdrawn on-the-fly instantly.
+- La part de puissance de calcul que reçoit un contrat sur chaque workers est égale à la part de cette puissance dans le cluster ;
+- Tout le monde peut participer à n'importe quel contrat ;
+- Le staking peut être ajustée ou retirée à la volée, instantanément.
 
-It can be summarized as a one-liner:
+On peut le résumer en une phrase :
 
-`The % of your stake = The % of your computing power share you receive`
+`Le % de votre staking = Le % de la part de puissance de calcul que vous recevez`.
 
-Usually, end-users will estimate the workload of the application, and then decide the amount to stake to get enough computing power. However, on Phala Network, the estimation turns out to be so tricky that the help of additional tools may be required. There will be a typical resource requirement of a few baseline applications to end-users as a reference in Phat Contract’s UI.
+Habituellement, les utilisateurs finaux estiment la charge de travail de l'application, puis décident du montant à mettre en jeu pour obtenir une puissance de calcul suffisante. Cependant, sur le réseau Phala, l'estimation s'avère si délicate que l'aide d'outils supplémentaires peut être nécessaire. L'interface utilisateur du Phat Contract présentera aux utilisateurs finaux, à titre de référence, les besoins en ressources typiques de quelques applications de base.
 
-### Transaction tokenomics
+### Transactions tokenomiques
 
-The transaction tokenomics’ goal is to mitigate DoS attacks by charging some transaction fee (also called "gas fee"). Since the transaction is rarely used in Phat Contract, we tend to offer a minimum interface to developers. (Users will mostly interact with Phat Contract by queries, while the transaction is used to deploy and configure Phat Contracts by the developer.)
+L'objectif de la transaction tokenomique est d'atténuer les attaques DoS en facturant des frais de transaction (également appelés "gas fee"). Comme la transaction est rarement utilisée dans le Phat Contract, nous avons tendance à offrir une interface minimale aux développeurs. (Les utilisateurs interagiront principalement avec le Phat Contract par des requêtes, tandis que la transaction est utilisée pour déployer et configurer les Phat Contracts par le développeur).
 
-Phat Contract adopts the same transaction payment mechanism as the vanilla ink! contracts - when sending a transaction call, it must attach some "gas fee" to the transaction.
+Le Phat Contract adopte le même mécanisme de paiement des transactions que les contrats vanilla ink ! - lorsqu'il envoie un appel de transaction, il doit attacher des "gas fee" à la transaction.
 
-In the execution of the transaction in the VM:
+Lors de l'exécution de la transaction dans la VM :
 
-- Each instruction will charge some fee until it finishes or the supplied gas fee is exhausted.
-- If there is any gas fee left, the blockchain will return the remaining token to the caller.
+- Chaque instruction facturera des frais jusqu'à ce qu'elle soit terminée ou que les gas fee fournis soient épuisés.
+- S'il reste des frais de gaz, la blockchain renverra le token restant à l'appelant.
 
-This mechanism can mitigate the Halting Problem, preventing the VM from trapping in the infinite loop.
+Ce mécanisme peut atténuer le problème d'arrêt, en empêchant la VM de se coincer dans la boucle infinie.
 
 ![](/images/general/demand-end-tokenomics-4.png)
 
-In the actual implementation, the transaction comes with a `gasLimit` and a `gasPrice`. The execution of the instructions is measured by `gas`, which should never exceed `gasLimit`. The user pays `gasLimit * gasPrice` first, and after the execution, if there is any remaining gas, the chain will refund the user `remainingGas & gasPrice`. Both Ethereum and ink! adopt the same mechanism.
+Dans l'implémentation actuelle, la transaction est accompagnée d'un `gasLimit` et d'un `gasPrice`. L'exécution des instructions est mesurée par le "gas", qui ne doit jamais dépasser le "gasLimit". L'utilisateur paie d'abord `gasLimite * gasPrice `, et après l'exécution, s'il reste du gas, la chaîne remboursera l'utilisateur `remainingGas & gasPrice `. Ethereum et ink ! adoptent le même mécanisme.
 
-## How it works
+## Comment ça marche
 
-It is different from the [Supply-end Tokenomics](/en-us/general/phala-network/tokenomics/) which mainly fixes the problem of how to incentivize workers to join and contribute to the network. Phat Contract’s tokenomics focus is on computing resource allocation.
+Elle est différente de la [Supply-end Tokenomics](/en-us/general/phala-network/tokenomics/) qui résout principalement le problème de la manière d'inciter les workers à rejoindre le réseau pour y contribuer. La Tokenomique du Phat Contract se concentre sur l'allocation des ressources informatiques.
 
-Here is the structure diagram of Phala’s demand end - Phat Contract’s tokenomics, you can easily understand how it works.
+Voici le diagramme de structure de la demande de Phala - Phat Contract's tokenomics, vous pouvez facilement comprendre comment il fonctionne.
 
 ![](/images/general/demand-end-tokenomics-1.png)
 
 | Layers       | Characters           | Functions                                                                                                                                                                                                                                                               |
 | ------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| First Layer  | Clusters & Workers   | Allocates the network’s computing resources across different clusters. Here, Phala employs a staking-based approach.                                                                                                                                                    |
-| Second Layer | Clusters & Contracts | Clusters allocate their computing power to the jobs that they receive from their end-users. The particular allocation mechanism at this stage is mostly left to the cluster owners. Phala provides a default staking-based implementation for the public good clusters. |
+| Layer 1  | Clusters & Workers   | Répartir les ressources informatiques du réseau entre les différents clusters. Ici, Phala utilise une approche basée sur le staking.                                                                                                                                                    |
+| Layer 2 | Clusters & Contracts | Les clusters allouent leur puissance de calcul aux travaux qu'ils reçoivent de leurs utilisateurs finaux. Le mécanisme d'allocation particulier à ce stade est principalement laissé aux propriétaires des clusters. Phala fournit une implémentation par défaut basée sur le staking pour les clusters de biens publics. |
 
 ### Demand-end
 
-#### First layer
+#### Première couche
 
-Adding up the [performance scores](/en-us/general/phala-network/tokenomics/#performance-test) across all workers in the network as $P$, where the performance score of a worker is proportional to the number of computations that the worker can handle per minute.
+Additionner les [scores de performance](/en-us/general/phala-network/tokenomics/#performance-test) de tous les workers du réseau en tant que $P$, où le score de performance d'un worker est proportionnel au nombre de calculs qu'il peut traiter par minute.
 
-- Let $P$ be the total computing power in the network that may be distributed;
-- Phala network reserves a fraction $0 ≤ α ≤ 1$ of the total computing power $P$ for end-users to deploy general Phat contracts;
-- Each cluster owner needs to stake PHA to obtain the computing power in the network;
-- Time is divided into eras, in each era $t$, the computing power reserved for clusters is proportional to the percentage of the stake amount of each cluster in total StakePool;
-- The reserved computing power $P_i$ for contract cluster $i$ then translates into a list of specific workers to which contract cluster $i$ can upload its code.
+- Soit $P$ la puissance de calcul totale du réseau qui peut être distribuée ;
+- Le réseau Phala réserve une fraction $0 ≤ α ≤ 1$ de la puissance de calcul totale $P$ aux utilisateurs finaux pour déployer des Phat contracts généraux ;
+- Chaque propriétaire de cluster doit mettre en staking le PHA pour obtenir la puissance de calcul dans le réseau ;
+- Le temps est divisé en ères, dans chaque ère $t$, la puissance de calcul réservée aux clusters est proportionnelle au pourcentage du montant du staking de chaque cluster dans la StakePool total ;
+- La puissance de calcul réservée $P_i$ pour le cluster de contrat $i$ se traduit alors par une liste de workers spécifiques auxquels le cluster de contrat $i$ peut télécharger son code.
 
 ![](/images/general/demand-end-tokenomics-2.png)
 
-For example, assume there is 100,000 PHA in StakePool, which are staked by Cluster A (50,000 PHA), Cluster B (30,000 PHA), and Cluster C (20,000 PHA). The mechanism of the first layer will allocate the whole computing power as 5:3:2 to Cluster A, B, and C. Then the mechanism will package workers as collections with fixed performance scores that match with clusters' needs randomly and assign the worker collections to Cluster A, B, and C. Each worker in the corresponding cluster can get the same share of computing power as the cluster to which it belongs.
+Par exemple, supposons qu'il y ait 100 000 PHA dans la StakePool, qui sont stakés par le Cluster A (50 000 PHA), le Cluster B (30 000 PHA) et le Cluster C (20 000 PHA). Le mécanisme de la première couche allouera l'ensemble de la puissance de calcul selon un rapport de 5:3:2 aux clusters A, B et C. Ensuite, le mécanisme regroupera les workers sous forme de collections avec des scores de performance fixes qui correspondent aux besoins des clusters de manière aléatoire et assignera les collections de workers aux clusters A, B et C. Chaque worker du cluster correspondant peut obtenir la même part de puissance de calcul que le cluster auquel il appartient.
 
-Staking happens through a dedicated staking module to which all PHA holders can contribute. The module might have a cap on the total stake above which no further stake is accepted. The developer can dynamically adjust this cap, and:
+Le staking se fait par le biais d'un module de staking dédié auquel tous les titulaires de PHA peuvent contribuer. Le module peut avoir un plafond sur le montant total du staking, au-delà duquel aucun autre staking n'est accepté. Le développeur peut ajuster dynamiquement ce plafond, et :
 
-- A cluster can remain funded forever
-- End-users can take out their stakes at any time after the unbending period
+- Un cluster peut rester financé pour toujours
+- Les utilisateurs finaux peuvent retirer leurs staking à tout moment après la période de unbonding.
 
 
-#### Second Layer
+#### Deuxième couche
 
-Once the individual clusters are allocated with their workers, the clusters need to allocate the jobs from their end-users to the respective workers. Cluster owners have full discretion on job allocation.
+Une fois que les clusters individuels sont alloués avec leurs workers, les clusters doivent allouer les tâches de leurs utilisateurs finaux aux workers respectifs. Les propriétaires de clusters ont toute liberté pour allouer les tâches.
 
 ![](/images/general/demand-end-tokenomics-3.png)
 
-So far, the second layer is not yet fully operational, but Phala suggests a reverse-fee model on this layer. Under this model:
+Pour l'instant, la deuxième couche n'est pas encore totalement opérationnelle, mais Phala suggère un modèle de frais inversés sur cette couche. Selon ce modèle :
 
-- Cluster $i$ may require their users to pay PHA, fiat, or their own cluster token CTO to use their services.
-- End-users are free to choose the amount, and the amount determines the weight that the worker attaches to a call of the contract when scheduling the incoming jobs.
+- Le cluster $i$ peut demander à ses utilisateurs de payer des PHA, des fiats ou leur propre token de cluster CTO pour utiliser ses services.
+- Les utilisateurs finaux sont libres de choisir le montant, et le montant détermine le poids que le travailleur attache à un appel du contrat lors de la programmation des travaux entrants.
 
-Clusters may keep lists of authorized users that can call contracts for free. In any case, the cluster developer will be able to build a set of controlling contracts to approve or deny the contract deployment and execution requests based on their individual rules.
+Les clusters peuvent conserver des listes d'utilisateurs autorisés qui peuvent appeler les contrats gratuitement. Dans tous les cas, le développeur du cluster sera en mesure de construire un ensemble de contrats de contrôle pour approuver ou refuser les demandes de déploiement et d'exécution des contrats en fonction de leurs règles individuelles.
 
-> As the cluster owner for all public good clusters, the Phala team will follow the second model in these clusters. Refer to the [leading section](/en-us/general/phala-network/phat-contract-fee/#how-to-pay-for-the-computing-services) for more details.
-
-
-### Clusters - Workers Matching
-
-#### What’s the problem
-
-Once clusters $i$ are allocated with their respective computing power $P$, the workers need to be allocated to the individual clusters.
-
-For an allocation $A_t$ to be feasible, each worker must be matched with exactly one cluster.
-
-The Phala Cluster-to-Worker matching algorithm seeks to find among the feasible allocations an allocation that maximizes the allocated computing power to the different clusters subject to their budget constraints.
+> En tant que propriétaire de tous les clusters de biens publics, l'équipe Phala suivra le deuxième modèle dans ces clusters. Reportez-vous à la [section principale](/en-us/general/phala-network/phat-contract-fee/#how-to-pay-for-the-computing-services) pour plus de détails.
 
 
-#### Basic matching method
+### Clusters - Matching des workers
 
-Phala implements an algorithm that provides a solution to this problem, in addition, takes into account that the clusters might have preferences over the allocations satisfying:
+#### Quel est le problème ?
 
-- Each worker must be matched with exactly one cluster
-- Maximizes the allocated computing power to the different clusters subject to their budget constraints
+Une fois que les clusters $i$ ont reçu leur puissance de calcul respective $P$, les workers doivent être alloués aux clusters individuels.
 
-The algorithm proceeds as follows:
+Pour qu'une allocation $A_t$ soit réalisable, chaque worker doit être associé à exactement un cluster.
 
-At the beginning of each era, each contract cluster is presented with an ordered list of all available workers,  $L_{it} = \{\ell_{it1}, ...., \ell_{itm_t} \}$. That is each element in $L_{it}$ is unique and satisfies $\ell_{itk} \in\{1,...m_t\}$. For every contract cluster, the order of the list is drawn randomly yet the contract clusters are free to rearrange the list as they please.
-
-The algorithm,
-
-- First, it rearranges the different contract clusters so that their stakes are ordered; i.e., $S_{1t}\ge S_{2t}\ge S_{3t}\ge ...S_{n_tt}$, where contract clusters with identical stakes are ordered randomly.
-- Then, the algorithm goes through the contract clusters in decreasing order of their stakes and assigns them to their most preferred workers that have not been assigned before and that are still in their budget set.
-- **What if a worker doesn’t match with any contract clusters?**
-  - As every contract cluster has all workers on its list, all contract clusters will be matched to some workers and the algorithm stops as soon as the least-staked contract cluster is assigned its workers. The workers that remain unmatched after this last step are then matched to the Phala contract cluster for general Phat contracts.
-- **Changing Factors**
-    - New clusters
-      - The resulting allocation will be the same from era to era, if the set of workers, the set of clusters, and their stakes do not change, and the developers submit the same preferences. If another cluster comes in at some point, then we want to reallocate workers without changing the overall allocation too dramatically. The design proposed above ensures that the more you stake the less you are affected by such a new entry.
-      - In particular, if the new entrant at $t + 1$ has a stake of size $\hat s$, then the budget of all remaining clusters is scaled, yet this rescaling is less dramatic the more stake a cluster holds and the remaining clusters $i$ for which $s_{it} > \hat s$ holds still get their most preferred workers (up to their new budget).
-    - Fake clusters
-      - One might also be worried about workers trying to manipulate their popularity measure by registering fake clusters. The algorithm prevents this by ***giving preference to higher-staked clusters over lower-staked ones***, making such manipulation attempts costly. In particular, it is the function $g(.)$, discussed in the next section, that can be used to steer how much the popularity of a worker affects its pay. So, if there is reason to worry that manipulations occur, $g(.)$  can in principle be changed at any time by governance to a function that does not change very much in its argument.
+L'algorithme de matching Cluster-to-Worker de Phala cherche à trouver parmi les allocations réalisables une allocation qui maximise la puissance de calcul allouée aux différents clusters sous réserve de leurs contraintes budgétaires.
 
 
-### Supply End - Worker Side
+#### Méthode de matching de base
 
-The remuneration of a worker depends on the security of the TEE, the computing power that it contributes to the network, and its general popularity.
+Phala implémente un algorithme qui fournit une solution à ce problème, en prenant en compte que les clusters pourraient avoir des préférences sur les allocations satisfaisantes :
 
-The former is objectively measurable, and the latter is determined based on the lists that the clusters submit to the matching algorithm.
+- Chaque worker doit être associé à un seul cluster.
+- Maximise la puissance de calcul allouée aux différents clusters en tenant compte de leurs contraintes budgétaires.
 
-To enhance Workers’ competitiveness in the system, here are several metrics that impact workers:
+L'algorithme se déroule comme suit :
 
-#### Popularity
+Au début de chaque ère, chaque cluster de contrats se voit présenter une liste ordonnée de tous les workers disponibles, $L_{it} = \{\ell_{it1}, ...., \ell_{itm_t} \}$. C'est-à-dire que chaque élément de $L_{it}$ est unique et satisfait à $\ell_{itk}$. \{1,...m_t\}$. Pour chaque cluster de contrats, l'ordre de la liste est tiré au sort, mais les clusters de contrats sont libres de réorganiser la liste comme ils le souhaitent.
 
-- `Points` - we assign points to a worker according to the ranks that he takes in these lists. Specifically, we give $m_t$ points to the first worker on a list, $m_t − 1$ to the second, and so on.
-- `Lists` - To measure the popularity of a worker in an era $t$, we collect the lists $\{{L_{it}}\}$$n_t\atop i=1$ that the clusters submit to the cluster-worker matching algorithm.
+L'algorithme,
 
-#### Security and computing power
+- Tout d'abord, il réorganise les différents clusters de contrats de manière à ce que leurs staking soient ordonnés, c'est-à-dire $S_{1t}\ge S_{2t}\ge S_{3t}\ge ...S_{n_tt}$, où les clusters de contrats ayant des stakings identiques sont ordonnés de manière aléatoire.
+- Ensuite, l'algorithme parcourt les clusters de contrats dans l'ordre décroissant de leurs staking et les affecte à leurs workers préférés qui n'ont pas été affectés auparavant et qui sont encore dans leur ensemble de budget.
+- **Que faire si un worker ne correspond à aucun cluster de contrat ?**
+  - Comme chaque cluster de contrats a tous les workers sur sa liste, tous les clusters de contrats seront associés à certains workers et l'algorithme s'arrête dès que le cluster de contrats le moins staké se voit attribuer ses workers. Les workers qui restent non associés après cette dernière étape sont ensuite associés au cluster de contrats Phala pour les Phat contracts généraux.
+- **Facteurs d'évolution**
+    - Les nouveaux clusters
+      - L'allocation résultante sera la même d'une ère à l'autre, si l'ensemble des workers, l'ensemble des clusters, et leurs staking ne changent pas, et si les développeurs soumettent les mêmes préférences. Si un autre cluster arrive à un moment donné, nous voulons réaffecter les workers sans changer trop radicalement l'allocation globale. La conception proposée ci-dessus garantit que plus votre mise est élevée, moins vous êtes affecté par une telle entrée.
+      - En particulier, si le nouvel entrant à $t + 1$ a un staking de taille $\hat s$, alors le budget de tous les clusters restants est redimensionné, mais ce redimensionnement est d'autant moins dramatique qu'un cluster détient un staking élevé et que les clusters restants $i$ pour lesquels $s_{it} > \hat s$ obtiennent toujours leurs workers préférés (jusqu'à leur nouveau budget).
+    - Les faux clusters
+      - On peut également s'inquiéter du fait que des workers tentent de manipuler leur indice de popularité en enregistrant de faux clusters. L'algorithme empêche cela en ***donnant la préférence aux clusters ayant un staking plus élevé qu'à ceux ayant un staking plus faible***, rendant de telles tentatives de manipulation coûteuses. En particulier, c'est la fonction $g(.)$, abordée dans la section suivante, qui peut être utilisée pour déterminer dans quelle mesure la popularité d'un travailleur affecte sa rémunération. Ainsi, s'il y a des raisons de craindre que des manipulations se produisent, $g(.)$ peut en principe être modifié à tout moment par la gouvernance d'une fonction dont l'argument ne change pas beaucoup.
 
-- We measure `the security of a worker` from the Remote Attestation report from Intel and denote it by $*C ≥ 0*$ in the following, meaning that a higher $*C*$ corresponds to higher confidence in the worker.
-- `The computing power of a worker` is measured by the variable $*P ≥ 0*$, meaning that a higher $*P*$ corresponds to better performance.
+
+### Supply End - Côté workers
+
+La rémunération d'un worker dépend de la sécurité du TEE, de la puissance de calcul qu'il apporte au réseau et de sa popularité.
+
+La première est objectivement mesurable, et la seconde est déterminée sur la base des listes que les clusters soumettent à l'algorithme de mise en correspondance.
+
+Pour améliorer la compétitivité des workers dans le système, voici plusieurs paramètres qui ont un impact sur les workers :
+
+#### Popularité
+
+- `Points` - nous attribuons des points à un worker en fonction des rangs qu'il prend dans ces listes. Plus précisément, nous donnons $m_t$ points au premier worker d'une liste, $m_t - 1$ au second, et ainsi de suite.
+- `Listes` - Pour mesurer la popularité d'un worker dans une ère $t$, nous collectons les listes $\{{L_{it}}\}$n_t\atop i=1$ que les clusters soumettent à l'algorithme d'appariement cluster-worker.
+
+#### Sécurité et puissance de calcul
+
+- Nous mesurons `la sécurité d'un worker` à partir du rapport d'attestation Intel et la désignons par $*C ≥ 0*$ dans la suite, ce qui signifie qu'un $*C*$ plus élevé correspond à une plus grande confiance dans le worker.
+- `La puissance de calcul d'un worker` est mesurée par la variable $*P ≥ 0*$, ce qui signifie qu'un $*P*$ plus élevé correspond à de meilleures performances.
 
 #### Stake
 
-Workers that want to become active have to put down a stake $S ≥ 0$. The stake may depend on the security and the computing power of a worker.
+Les workers qui veulent devenir actifs doivent déposer un staking $S ≥ 0$. Le staking peut dépendre de la sécurité et de la puissance de calcul d'un workers.
 
 #### Slashing
 
-If a worker misbehaves, the worker gets slashed. Depending on the severity of misbehavior, the slash may take on different sizes. The specifics of the slashing scheme are subject to governance. Let $s_{it} ≥ 0$ be the slash that is applied to worker $i$ in era $ t$.
+Si un worker se comporte mal, il est sanctionné. Selon la gravité de son comportement, la sanction peut prendre différentes formes. Les spécificités du schéma de slashing sont soumises à la gouvernance. Soit $s_{it} ≥ 0$ le slash qui est appliqué au workers $i$ dans l'ère $ t$.
 
-#### Remuneration
+#### Rémunération
 
-Worker remuneration is tracked via a so-called `value promise`, $V_t$ ≥ 0.
+La rémunération des workers est suivie par une `promesse de valeur`, $V_t$ ≥ 0.
 
-- When a Worker becomes active, in round  $t = T$, its initial value is zero.
-- Then, in every round $t ≥ T$ in which the Worker is still active, the value promise is increased by $*f(C, P)+g(b_{it})*$, where $*f(., .)*$ and $*g(.)*$ are increasing in their respective arguments.
+- Lorsqu'un worker devient actif, au tour $t = T$, sa valeur initiale est de zéro.
+- Ensuite, à chaque round $t ≥ T$ dans lequel le Worker est encore actif, la promesse de valeur est augmentée de $*f(C, P)+g(b_{it})*$, où $*f(., .)*$ et $*g(.)*$ sont croissants dans leurs arguments respectifs.
 
-The specific functional forms of $*f*$ and $*g*$ are subject to governance.
+Les formes fonctionnelles spécifiques de $*f*$ et $*g*$ sont soumises à la gouvernance.
 
-**a.) Intermediate payouts**
+**a.) Paiements intermédiaires**
 
-A worker can always request an intermediate payout.
+Un workers peut toujours demander un paiement intermédiaire.
 
-Let $w_{it} ≥ 0$ be the intermediate payout of bidder $i$ in round $t$. The intermediate payout may never be greater than the value promise in that round net of the slashes and payouts in earlier rounds:
+Soit $w_{it} ≥ 0$ le paiement intermédiaire du demandeur $i$ au round $t$. Le payout intermédiaire ne peut jamais être supérieur à la valeur promise dans ce round net des slashs et paiements des rounds précédents :
 
 $w_it ≤$ $\displaystyle\sum_{τ=\underline{T}}^{t}$  $[f(C,P) + g(b_{iτ}) − s_{iτ} ] −$ $\displaystyle\sum_{τ=\underline{T}}^{t-1}$ $w_{iτ}$ .
 
-Because  $w_{it} ≥ 0$, the above condition implies that, as soon as the slashes exceed the value promise net of previous payouts, no new payouts can be requested.
+Comme $w_{it} ≥ 0$, la condition ci-dessus implique que, dès que les slashs dépassent la valeur promise nette des versements précédents, aucun nouveau versement ne peut être demandé.
 
-**b.) Final payout**
+**b.) Paiement final**
 
-A worker can stay in the StakePool either until his stake plus value promise net of slashes and payouts becomes negative, or until he decides to leave.
+Un workers peut rester dans la StakePool soit jusqu'à ce que son staking plus la promesse de valeur nette des slashs et des payouts deviennent négatifs, soit jusqu'à ce qu'il décide de partir.
 
-That is, a worker will be excluded from the StakePool in time $T$ if and only if
+C'est-à-dire qu'un workers sera exclu du StakePool au temps $T$ si et seulement si
 
 $S +$$\displaystyle\sum_{t=\underline{T}}^{\overline{T}}$ $[f(C, P) + g(b_{it}) − s_{it} − w_{it}] ≤ 0$.
 
-If, on the other hand, a worker decides to leave the set of active workers, he receives a final payout, $W$.
+Si, en revanche, un worker décide de quitter l'ensemble des workers actifs, il reçoit un paiement final, $W$.
 
-If a worker leaves in period $t = T$, then the final payout amounts to
+Si un workers part à la période $t = T$, alors le paiement final s'élève à
 
 $W = S +$ $\displaystyle\sum_{t=\underline{T}}^{\overline{T}}$ $[f(C, P) + g(b_{it}) − s_{it} − w_{it}]$.
