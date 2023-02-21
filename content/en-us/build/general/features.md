@@ -1,5 +1,5 @@
 ---
-title: "Features"
+title: "Fonctionnalités"
 weight: 1002
 draft: false
 menu:
@@ -7,39 +7,39 @@ menu:
     parent: "phat-general"
 ---
 
-## Compared with Smart Contract
+## Comparaison avec les smart contracts
 
-The existing smart contract solutions have many limitations:
+Les solutions existantes en matière de smart contracts présentent de nombreuses limites :
 
-- High latency with a limited number of instructions to execute;
-- No database support;
-- No network access;
-- Few libraries;
+- Latence élevée avec un nombre limité d'instructions à exécuter ;
+- Aucun support de base de données ;
+- Aucun accès au réseau ;
+- Peu de librairies ;
 
-Phat Contract is meant to be the missing computational unit for existing smart contracts, so you do not need to deploy your backend programs to a centralized cloud anymore.
+Le Phat Contract est destiné à être l'unité de calcul manquante pour les smart contracts existants, de sorte que vous n'avez plus besoin de déployer vos programmes backend sur un cloud centralisé.
 
 ![](/images/general/fat-features.jpeg)
 
-The Phat Contract inherits the self-enforcing and tamper-proof nature of smart contracts while introducing more advantages including:
+Le Phat Contract hérite de la nature auto-renforçante et sécurisé des smart contracts tout en introduisant plus d'avantages, notamment :
 
-- Privacy-preserving with performance. It’s safe to store and process your secret data in Phat Contract since it’s backed by hardware-based encryption throughout its lifecycle;
-- Zero latency, zero gas fee. The interactions with Phat Contract can involve no on-chain transactions, thus achieving millisecond-level read and write responses with no gas fee;
-- Connectivity with HTTP requests. Phat Contract natively supports HTTP requests. Use it to connect any existing Web2 services to store data and build Oracle, or an RPC node of other blockchains for easy and safe cross-chain operations;
-- Freedom to use libraries in the Rust ecosystem. Write your contract with Rust-based [ink! language](https://paritytech.github.io/ink/) and use libraries with `no_std` support. We will support `std` in the future Phat Contract version then you can use any libraries you like.
+- Préservation de la vie privée avec la performance. Vous pouvez stocker et traiter vos données confidentielles en toute sécurité dans le Phat Contract, car elles sont protégées par un cryptage matériel tout au long de leur cycle de vie ;
+- Latence inexistante, frais de gaz inexistants. Les interactions avec le Phat Contract ne peuvent impliquer aucune transaction on-chain, ce qui permet d'obtenir des réponses en lecture et en écriture au niveau de la milliseconde, sans frais de gaz ;
+- Connectivité avec les requêtes HTTP. Le Phat Contract supporte nativement les requêtes HTTP. Utilisez-le pour connecter n'importe quel service Web2 existant pour stocker des données et construire un Oracle, ou un nœud RPC d'autres blockchains pour des opérations inter-chaînes simples et sûres ;
+- La liberté d'utiliser les librairies de l'écosystème Rust. Rédigez votre contrat avec le [language ink !](https://paritytech.github.io/ink/) basé sur Rust et utilisez des librairies avec le support `no_std`. Nous supporterons `std` dans la future version du Phat Contract et vous pourrez alors utiliser toutes les librairies que vous souhaitez.
 
-## Compared with Web2 Serverless Services
+## Comparaison avec les services sans serveur Web2
 
-Phat Contract provides the same functionalities as our Web2 counterparts but opens up more possibilities with its Web3 nature.
+Le Phat Contract offre les mêmes fonctionnalités que nos homologues Web2 mais ouvre davantage de possibilités grâce à sa nature Web3.
 
-- Enforced execution of general-purpose programs. The enforcement of execution is the core feature of smart contracts: the developers cannot tamper or stop their programs after deployment, which builds the trust base. With Phat Contract, we bring this to more general-purpose programs. Never under-estimate this since it's why cryptocurrencies can have value;
-- Decentralized and trustless infrastructure. Our infrastructure design is totally public and all its code is available for you to check. To process your sensitive data in Phat Contract implies no trust in the Phala team, but in the code and Secure-Enclave-based hardware;
-- Easier integration with other blockchains. We provide contract templates for easy and safe interactions with existing blockchains. Also, you can safely delegate your chain accounts to the trustless Phat Contract with no worry about privacy leakage;
-- Open contract ecosystem. The most typical difference between contracts and Web2 programs is that they are naturally public: you are free to call any existing contracts to compose your own apps with little effort.
+- Exécution forcée de programmes à usage général. L'exécution forcée est la fonctionnalité principale des smart contracts : les développeurs ne peuvent pas altérer ou arrêter leurs programmes après le déploiement, ce qui renforce la confiance. Avec le Phat Contract, nous apportons cela à des programmes plus généralistes. Ne sous-estimez jamais cela car c'est la raison pour laquelle les crypto-monnaies peuvent avoir de la valeur ;
+- Infrastructure décentralisée et sans tiers de confiance. La conception de notre infrastructure est totalement publique et tout son code est disponible pour que vous puissiez le vérifier. Traiter vos données sensibles dans le Phat Contract n'implique aucun tiers de confiance dans l'équipe Phala, mais dans le code et le matériel basé sur Secure-Enclave ;
+- Intégration plus simple avec d'autres blockchains. Nous fournissons des modèles de contrat pour des interactions simples et sécurisées avec les blockchains existantes. De plus, vous pouvez déléguer en toute sécurité les comptes de votre chaîne au Phat Contract, qui ne craint pas les pertes de confidentialité ;
+- Un écosystème de contrats libres. La différence la plus typique entre les contrats et les programmes Web2 est qu'ils sont naturellement publics : vous êtes libre d'appeler n'importe quel contrat existant pour composer vos propres applications avec un minimum d'effort.
 
-<!-- ## What's New?
+<!-- ## Quelles sont les nouveautés ?
 
-Compared its previous version, the latest Phat Contract is also evolving in the following aspects:
+Par rapport à sa version précédente, le dernier Phat Contract évolue également sur les aspects suivants :
 
-- Support HTTP Request feature in ink! contract. Previously, we have shown that we can run unmodified ink! contracts in Phala's Secure Workers. While to use the killer HTTP Request feature, a developer has to fork the phala-blockchain codebase and write the Native Contract. In the new release, we support HTTP Request feature in ink! contract and make it ink! contract [extension](https://crates.io/crates/pink-extension). It provides HTTP requests and other crypto-related functionality for ink! contract;
-- Testnet goes alive. In the old time, our developers have to run a local testnet for contract development, which can be time-consuming. Now we have enabled the [Phala Testnet (PoC 5)](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpoc5.phala.network%2Fws#/explorer), so the contract development can be easy;
-- Use Phat Contract to run unmodified x86 programs. We have presented a [demo](https://github.com/Phala-Network/blender-contract) to use Phat Contract to run the unmodified rendering engine Blender with the help of [Gramine project](https://github.com/gramineproject/gramine). This means the public decentralized render service is on its way. This also proves Phat Contract's potential to run complicated real-world programs. -->
+- Support de la fonctionnalité HTTP Request dans les contrats ink ! Précédemment, nous avons montré que nous pouvons exécuter des contrats ink ! non modifiables dans les Secure Workers de Phala. Mais pour utiliser la fonctionnalité de requête HTTP, un développeur doit forker la base de code phala-blockchain et écrire le contrat natif. Dans la nouvelle version, nous supportons la fonction de requête HTTP dans le contrat ink ! et en faisons un contrat ink ! [extension](https://crates.io/crates/pink-extension). Elle fournit des requêtes HTTP et d'autres fonctionnalités liées à la cryptographie pour ink ! contract ;
+- Testnet devient opérationnel. Auparavant, nos développeurs devaient gérer un testnet local pour le développement des contrats, ce qui pouvait prendre beaucoup de temps. Maintenant, nous avons activé le [Phala Testnet (PoC 5)](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpoc5.phala.network%2Fws#/explorer), de sorte que le développement du contrat peut être plus facile ;
+- Utilisez un Phat Contract pour exécuter des programmes x86 non modifiés. Nous avons présenté une [démo](https://github.com/Phala-Network/blender-contract) permettant d'utiliser Phat Contract pour exécuter le moteur de rendu non modifié Blender avec l'aide du [projet Gramine](https://github.com/gramineproject/gramine). Cela signifie que le service de rendu public décentralisé est en route. Cela prouve également le potentiel de Phat Contract à exécuter des programmes complexes du monde réel. -->
