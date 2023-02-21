@@ -1,5 +1,5 @@
 ---
-title: "Preparation"
+title: "Préparation"
 weight: 2001
 menu:
   build:
@@ -8,17 +8,17 @@ menu:
 
 ## Introduction
 
-This getting-started tutorial will walk you through the whole process of deploying your first Phat contract and interact with it through the concole UI.
+Ce tutoriel de démarrage vous guidera tout au long du processus de déploiement de votre premier Phat Contract et d'interaction avec celui-ci via l'interface utilisateur de Concole.
 
-It has no requirements on your operating system or environment.
+Il n'a aucune exigence concernant votre système d'exploitation ou votre environnement.
 
-## Hello-World Contract
+## Contrat Hello-World
 
-We have prepared the pre-compiled contract for you to save your time to setup the environment
+Nous avons préparé le contrat pré-compilé pour vous afin de vous faire gagner du temps dans la configuration de l'environnement.
 
-- [phat-hello](https://github.com/Phala-Network/phat-hello): [Download](/files/phat_hello.contract)
-  - It receives the Ethereum accounts from users and reports the account balance by querying the Etherscan API with its native HTTP request
+- [phat-hello](https://github.com/Phala-Network/phat-hello): [Télécharger](/files/phat_hello.contract)
+  - Il reçoit les comptes Ethereum des utilisateurs et indique le solde du compte en interrogeant l'API Etherscan avec sa requête HTTP native.
 
-## Get Test Account
+## Obtenir un compte de test
 
-If you haven't got your test account, follow our [tutorial](/en-us/build/getting-started/account-prep/) to install the extension and generate your test account.
+Si vous n'avez pas de compte de test, suivez notre [tutoriel](/en-us/build/getting-started/account-prep/) pour installer l'extension et générer votre compte de test.

@@ -55,7 +55,7 @@
   weight = 1000
 
 [[build]]
-  name = "Getting Started"
+  name = "Démarrer"
   identifier = "phat-basic"
   url = "/build/getting-started/"
   weight = 2000

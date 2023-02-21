@@ -1,4 +1,4 @@
 ---
-title: "Getting Started"
+title: "Démarrer"
 weight: 2000
 ---
