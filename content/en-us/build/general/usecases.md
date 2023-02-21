@@ -1,31 +1,32 @@
 ---
-title: "Use Cases"
+title: "Cas d'utilisation"
 weight: 1003
 menu:
   build:
     parent: "phat-general"
 ---
 
-The Phat Contract is designed for the following use cases, and remember: *all these features come with Phala's trustless and decentralized infrastructure*.
+Le Phat Contract est conçu pour les cas d'utilisation suivants, et n'oubliez pas : *toutes ces fonctionnalités sont fournies avec l'infrastructure sans tiers de confiance et décentralisée de Phala Network*.
 
-## Low-latency
+## Faible latence
 
-Services like GameFi or Metaverse backends
-- Run Decentraland game server in Phala workers with little changes ([catalyst](https://github.com/Phala-Network/catalyst/tree/sgx-shielded) and [catalyst-owner](https://github.com/Phala-Network/catalyst-owner/tree/sgx-shielded))
+Services comme GameFi ou Metaverse backends
+- Exécuter le serveur de jeu comme Decentraland dans les workers Phala avec peu de modifications ([catalyst](https://github.com/Phala-Network/catalyst/tree/sgx-shielded) et [catalyst-owner](https://github.com/Phala-Network/catalyst-owner/tree/sgx-shielded)).
 
-## Compute-intensive
+## Intensif en calcul
 
-Applications like NFT rendering, machine learning, and big data analytics
-- See [demo video](https://www.youtube.com/watch?v=corp9wMlkfI&t=1s) of running unmodified [Blender](https://www.blender.org/) in Phala workers, with [source code](https://github.com/Phala-Network/blender-contract)
+Applications telles que le rendu de NFT, le machine learning et l'analyse des big data.
+- Voir la [vidéo de démonstration](https://www.youtube.com/watch?v=corp9wMlkfI&t=1s) de l'exécution de [Blender](https://www.blender.org/) non modifié dans des workers Phala, avec le [code source](https://github.com/Phala-Network/blender-contract).
 
-## Privacy-preserving
+## Protection de la confidentialité
 
-Scenarios like a decentralized exchange and others where privacy matters
-- Check our design and implementation of [secret NFT](https://github.com/tenheadedlion/phat-nft) with Phat Contract
+Scénarios tels qu'un échange décentralisé et d'autres où la confidentialité est importante.
+- Découvrez notre conception et notre mise en œuvre de [secret NFT](https://github.com/tenheadedlion/phat-nft) avec Phat Contract.
+
 ![](/images/build/usecase-secret-nft.png)
 
 ## Composable
 
-Applications including Oracle, bots, and other applications involving one or more Web2/Web3 services
-- See [demo video](https://www.youtube.com/watch?v=THeM8E-3lec) of using Phat Contract to read other chains' states through indexing services
-- Follow our [Oracle workshop](https://github.com/Phala-Network/phat-offchain-rollup/tree/sub0-workshop/phat) and build the full-functional Oracle for any EVM-compatible chains ([Demo video](https://drive.google.com/file/d/1Hg9HFEBbCiXGiyQZPKPd1Zs1BiJtP7kg/view) for BSC)
+Applications, notamment d’Oracle, de bots et autres applications impliquant un ou plusieurs services Web2/Web3
+- Voir la [vidéo de démonstration](https://www.youtube.com/watch?v=THeM8E-3lec) de l'utilisation de Phat Contract pour lire les états d'autres chaînes par le biais de services d'indexation.
+- Suivez notre [workshop Oracle](https://github.com/Phala-Network/phat-offchain-rollup/tree/sub0-workshop/phat) et construisez un Oracle entièrement fonctionnel pour toutes les chaînes compatibles EVM ([vidéo de démonstration](https://drive.google.com/file/d/1Hg9HFEBbCiXGiyQZPKPd1Zs1BiJtP7kg/view) pour BSC).
