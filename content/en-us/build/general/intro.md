@@ -7,34 +7,34 @@ menu:
     parent: "phat-general"
 ---
 
-## What is Phat Contract
+## Qu'est-ce que le Phat Contract
 
-Phat Contract is an innovative programming model enabling [*Off-chain Computation*](https://medium.com/phala-network/fat-contract-introduce-off-chain-computation-to-smart-contract-dfc5839d5fb8). It’s also known as Fat Contract as a practice of the "Fat Protocol & Thin Application" concept, and for its rich functionalities compared with existing smart contracts. Phat Contract uses Rust-based [ink! language](https://paritytech.github.io/ink/).
+Le Phat Contract est un modèle de programmation innovant permettant la [*Computation Off-Chain*](https://medium.com/phala-network/fat-contract-introduce-off-chain-computation-to-smart-contract-dfc5839d5fb8). Il est également connu sous le nom de Fat Contract en tant que pratique du concept "Fat Protocol & Thin Application", ainsi que pour ses riches fonctionnalités par rapport aux smart contracts existants. Le Phat Contract utilise le langage [ink !](https://paritytech.github.io/ink/) basé sur Rust .
 
-> **Hint**
+> **Indication**
 >
-> Every Phat contract is naturally a *distributed* program since it has multiple instances across every worker in a cluster. All these instances can handle the users' requests concurrently, but they can also cause troubles when they try to update the contract state at the same time.
+> Chaque Phat contract est naturellement un programme *distribué* puisqu'il comporte plusieurs instances réparties entre tous les workers d'un cluster. Toutes ces instances peuvent traiter les demandes des utilisateurs simultanément, mais elles peuvent aussi causer des problèmes lorsqu'elles essaient de mettre à jour l'état du contrat en même temps.
 >
-> This is why we recommend beginners to start with building stateless applications which is free of the problems above.
+> C'est pourquoi nous recommandons aux débutants de commencer par construire des applications sans état, qui sont exemptes des problèmes ci-dessus.
 
 ![](/images/build/phat-offchain-comp.png)
 
-Although with the name of "contract", Phat Contract is more like the Web3 version of [Amazon Lambda](https://aws.amazon.com/lambda/) backed by the decentralized Phala computing cloud and meant to support complex computation with low latency and cost.
+Bien que portant le nom de "contrat", le Phat Contract ressemble davantage à la version Web3 d'[Amazon Lambda](https://aws.amazon.com/lambda/) soutenue par le cloud computing décentralisé de Phala et destinée à supporter des calculs complexes avec une faible latence et un faible coût.
 
-You can easily deploy your Phat contract to multiple workers in Phala Network, with each instance handling users' requests in parallel. The contract is running in Secure Enclave, and all its states and input/output are transparently encrypted.
+Vous pouvez facilement déployer votre Phat contract sur plusieurs workers du réseau Phala, chaque instance traitant les demandes des utilisateurs en parallèle. Le contrat est exécuté dans Secure Enclave, et tous ses états et entrées/sorties sont chiffrés de manière transparente.
 
-Phat Contract is not meant to replace the smart contracts, instead, it tries to be the missing decentralized computation unit for them.
-For example, instead of implementing an [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) token with Phat Contract (whose balance has to be stored on-chain), we recommend deploying your ERC-20 contract on Ethereum and using Phat Contract to operate it.
+Le Phat Contract n'est pas destiné à remplacer les smart contracts, il tente plutôt d'être l'unité de calcul décentralisée manquante pour eux.
+Par exemple, au lieu de mettre en œuvre un token [ERC-20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) avec le Phat Contract (dont le solde doit être stocké on-chain), nous recommandons de déployer votre contrat ERC-20 sur Ethereum et d'utiliser Phat Contract pour le faire fonctionner.
 
 
-## When will you need it
+## Quand en aurez-vous besoin ?
 
-> When a single smart contract is not ENOUGH for your DApp, implement the rest logic with Phat Contract.
+> Lorsqu'un seul smart contract n'est pas suffisant pour votre DApp, implémentez le reste de la logique avec Phat Contract.
 
-Since the on-chain storage and execution can be expensive (from both monetary and performance perspectives), it's reasonable to keep the on-chain contract small and compact and implement the other logic elsewhere. The existing DApps usually implement their own backend logic as normal programs and deploy them to centralized services like AWS (Amazon Web Services).
+Étant donné que le stockage et l'exécution on-chain peuvent être coûteux (d'un point de vue monétaire et de performance), il est raisonnable de garder le contrat on-chain petit et compact et de mettre en œuvre l'autre logique ailleurs. Les DApps existantes implémentent généralement leur propre logique backend comme des programmes normaux et les déploient vers des services centralisés comme AWS (Amazon Web Services).
 
 ![](/images/build/web2-stack.png)
 
-With the computing service from Phala and its Phat Contract, you can run your backend programs on a decentralized infrastructure with privacy, performance, and low cost.
+Avec le service computing de Phala et son Phat Contract, vous pouvez exécuter vos programmes backend sur une infrastructure décentralisée en toute confidentialité, avec des performances et à faible coût.
 
 ![](/images/build/web3-stack.png)
