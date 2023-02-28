@@ -1,228 +1,229 @@
 ---
-title: "Worker Rewards"
+title: "Récompenses pour les Workers"
 weight: 1006
 menu:
   general:
     parent: "phala-network"
 ---
 
-This document contains the *Supply-end Tokenomics* for Phala Network, which defines how workers get their rewards by sharing the computing power.
+Ce document contient la *Tokenomics Supply-end* pour le Phala Network, qui définit comment les workers obtiennent leurs récompenses en partageant la puissance de calcul.
 
-> After the approval of the “Gemini Tokenomics upgrade" democratic referendum on the block height #1,467,069, we have updated the content of the Supply-end Tokenomics as follows:
+> Après l'approbation du référendum démocratique "Gemini Tokenomics upgrade" sur la hauteur de bloc #1,467,069, nous avons mis à jour le contenu de la Tokenomics Supply-end de la manière suivante :
 
-## Design Targets
+## Objectifs de la conception
 
-The overall economic design is built to address these points:
+La conception économique globale est conçue pour répondre à ces points :
 
-1. Support Phala Network's trustless cloud computing architecture
-   - Consensus-Computation Separation
-   - Linearly-scalable computing workers (100k order of magnitude number of workers)
-2. Incentivize workers to join the network
-   - Ensure payment for power supplied irrespective of demand, especially at network bootstrap
-   - Subsidize mining pool with 70% of the initial supply over time
-   - Bitcoin-like budget halving schedule
-   - Power the Phala and Khala at the same time
-3. Application pricing
-4. On-chain performance
+1. Soutenir l'architecture du cloud computing sans tiers de confiance (trustless) de Phala Network.
+   - Séparation par consensus et calcul
+   - Les workers informatiques linéairement extensibles (nombre de workers d'un ordre de grandeur de 100k)
+2. Inciter les workers à rejoindre le réseau
+   - Garantir le paiement de l'électricité fournie indépendamment de la demande, notamment au démarrage du réseau.
+   - Subventionner le pool minier avec 70% de l'offre initiale au fil du temps
+   - Calendrier de réduction de moitié du budget similaire à celui du bitcoin (halving)
+   - Alimenter le Phala et le Khala en même temps
+3. Tarifs spécifiques pour les applications
+4. Performance On-chain
 
-The following details some key elements of the economic model.
+Les paragraphes suivants détaillent certains éléments clés du modèle économique.
 
-## Overall Design
+## Conception générale
 
-### Related Workers
+### Workers associés
 
-Phala Supply-end Tokenomics applies to any workers running on Phala or Khala.
+Phala Supply-end Tokenomics s'applique à tous les workers fonctionnant sur Phala ou Khala.
 
-### Value Promise ($V$)
+### Promesse de valeur ($V$)
 
-- A virtual score for an individual worker representing value earned which is payable in the future, to motivate workers to behave honestly and reliably
-- Equal to the expected value of the revenues earned by the worker for providing power for the platform
-- Changes dynamically based on the worker's behaviors and the repayment of Rewards
-  - Mining honestly: $V$ grows gradually over time
-  - Harmful conduct: punished by reduction of $V$
+- Un score virtuel pour un worker individuel représentant la valeur gagnée qui est payable dans le futur, pour motiver les workers à se comporter de manière honnête et fiable
+- Égal à la valeur attendue des revenus gagnés par le worker pour fournir de l'énergie à la plate-forme
+- Change de façon dynamique en fonction des comportements des workers et du remboursement des récompenses
+  - Exploitation honnête : $V$ croît progressivement au fil du temps
+  - Comportement nuisible : puni par une réduction de $V$.
 
-### Initial $V$
+### $V$ Initial
 
-A Worker will run a **_Performance Test_** and stake some tokens to get the initial $V$:
+Un Worker exécutera un **_Test de performance_** et mettra en staking quelques jetons pour obtenir le $V$ initial :
 
 $$V^e = f(R^e, \text{ConfidenceScore}) \times (S + C)$$
 
-- $R^e > 1$ is a **_Stake Multiplier_** set by the network (Khala or Phala).
-- $S$ is the worker stake; a **_Minimum Stake_** is required to start mining. The stake can't be increased or decreased while mining, but can be set higher than the Minimum.
-- $C$ is the estimated cost of the worker rigs, inferred from the **_Performance Test_**.
-- $\text{ConfidenceScore}$ is based on the worker's Intel© SGX capabilities.
+- $R^e > 1$ est un **_Multiplicateur de staking** fixé par le réseau (Khala ou Phala).
+- $S$ est le staking du worker; un **_Minimum Stake_** est requis pour commencer le minage. Le staking ne peut pas être augmentée ou diminuée pendant le minage, mais peut être fixé plus haut que le minimum.
+- $C$ est le coût estimé des Rigs des workers, déduit du **_Test de performance_**.
+- $\text{ConfidenceScore}$ est basé sur les capacités Intel© SGX du worker's.
 - $f(R^e, \text{ConfidenceScore}) = 1 + (\text{ConfidenceScore} \cdot (R^e - 1))$
-- $V$ is always less than or equals to $V_{max}$.
+- $V$ est toujours inférieur ou égal à $V_{max}$.
 
-Params used in simulation:
+Paramètres utilisés dans la simulation :
 
 - $R^e_{\text{Phala}} =R^e_{\text{Khala}} = 1.5$
-- $\text{ConfidenceScore}$ for different [Confidence Levels](/en-us/mine/solo/1-2-confidential-level-evaluation/#confidence-level-of-a-worker)
+- $\text{ConfidenceScore}$ pour différents [niveaux de confiance](/en-us/mine/solo/1-2-confidential-level-evaluation/#confidence-level-of-a-worker)
   - $\text{ConfidenceScore}_{1,2,3} = 1$
   - $\text{ConfidenceScore}_{4} = 0.8$
   - $\text{ConfidenceScore}_{5} = 0.7$
 - $V_{max} = 30000$
 
-### Performance Test
+### Test de performance
 
-A performance test measures how much computation can be done in a unit of time:
+Un test de performance mesure la quantité de calculs pouvant être effectués dans une unité de temps :
 
 $$P = \frac{\text{Iterations}}{\Delta t}$$
 
-For reference,
+Pour référence,
 
-| Platform               | Cores | Score | Approximate Price |
+| Plate-forme               | Cores | Score | Prix approximatif |
 | ---------------------- | ----- | ----- | ----------------- |
 | Low-End Celeron        | 4     | 450   | $150              |
 | Intel Xeon E Processor | 6     | 1900  | $500              |
 | Mid-End i5 10-Gen      | 8     | 2000  | $500              |
 | High-End i9 9-Gen      | 10    | 2800  | $790              |
 
-> The table is based on the version while writing of this documentation and is subject to changes.
+> Le tableau est basé sur la version en cours de rédaction de cette documentation et est sujet à des changements.
 
-The performance test will be performed:
+Le test de performance sera effectué :
 
-1. **Before mining** to determine the **_Minimum Stake_**
-2. **During mining** to measure the current performance, and to adjust the $V$ increment dynamically
+1. **Avant le minage** pour déterminer le **_Minimum Stake_**.
+2. **Pendant le minage** pour mesurer la performance actuelle, et pour ajuster l'incrément de $V$ dynamiquement.
 
 ### Minimum Stake
 
 $$S_{min}=k \sqrt{P}$$
 
-- $P$ - **_Performance Test_** score
-- $k$ - adjustable multiplier factor
+- $P$ - **_Test de performance_** score
+- $k$ - facteur multiplicateur ajustable
 
-Proposed parameter:
+Paramètre proposé :
 
 - $k_{\text{Phala}} =k_{\text{Khala}} = 50$
 
-> Locked state $PHA token can also be used for mining staking, e.g., Khala Crowdloan reward
+> L'état verrouillé (Locked) du jeton $PHA peut également être utilisé pour le staking du minage, par exemple, la récompense Khala Crowdloan.
 
-### Cost
+### Coût
 
 $$C = \frac{0.3 P}{\phi}$$
 
-- $\phi$ is the current PHA/USD quote, dynamically updated on-chain via Oracles
-- $P$ is the initial **_Performance Test_** score.
-- In the early stages, we are compensating the equipment cost $C$ with a higher Value Promise.
-- In the future, we plan to compensate for higher amortization costs (adding equipment amortization cost to the running costs $c^i$ and $c^a$), thus increasing the speed of growth of the Worker's $V$.
+- $\phi$ est la cotation actuelle du PHA/USD, mise à jour dynamiquement sur la chaîne par les Oracles.
+- $P$ est le score initial du **_Test de performance_**.
+- Dans les premières étapes, nous compensons le coût de l'équipement $C$ par une promesse de valeur plus élevée.
+- A l'avenir, nous prévoyons de compenser les coûts d'amortissement plus élevés (en ajoutant le coût d'amortissement de l'équipement aux coûts de fonctionnement $c^i$ et $c^a$), augmentant ainsi la vitesse de croissance du $V$ du Worker's.
 
-### General mining process
+### Processus général du minage
 
 ![](https://i.imgur.com/IpEnlGR.png)
 
 ![](https://i.imgur.com/zKWAI1S.png)
 
-Each individual's $V$ is updated at every block:
+Les $V$ de chaque personne sont mis à jour à chaque bloc :
 
-- Increased by $\Delta V_t$ if the worker keeps mining
-- Decreased by $w(V_t)$ if the worker got a payout
-- Decreased according to the **_Slash Rules_** if the worker misbehaves
+- Augmenté de $\Delta V_t$ si le worker continue de miner.
+- Diminué de $w(V_t)$ si le worker a reçu un paiement.
+- Diminué selon les **_Règles de Slash_** si le worker se comporte mal.
 
-When a worker gets a payout $w(V_t)$, they will receive the amount immediately in their Phala wallet. The payout follows **_Payout Schedule_** and cannot exceed the **_Subsidy Budget_**.
+Lorsqu'un worker reçoit un paiement $w(V_t)$, il reçoit le montant immédiatement dans son wallet Phala. Le paiement suit le **_Calendrier des paiements_** et ne peut pas dépasser le **_Budget des subventions_**.
 
-Finally, once the worker decides to stop mining, they will wait for a Cooling Down period $\delta$. They will receive an one-time final payout after the cooldown.
+Enfin, une fois que le worker décide d'arrêter de miner, il attendra une période de Cooling Down (refroidissement) de $\delta$. Il recevra un paiement final unique après la période de Cooling Down.
 
-| Block number  |     $t$      |    $t+1$     | $\dots$ |     $T$      |             $\dots$             |       $T+\delta$        |
+| Numéro de bloc  |     $t$      |    $t+1$     | $\dots$ |     $T$      |             $\dots$             |       $T+\delta$        |
 | :------------ | :----------: | :----------: | :-----: | :----------: | :-----------------------------: | :---------------------: |
-| Value Promise |    $V_t$     |  $V_{t+1}$   | $\dots$ |    $V_T$     |             $\dots$             |         $\dots$         |
-| Payment       |   $w(V_t)$   | $w(V_{t+1})$ | $\dots$ |   $w(V_T)$   |               $0$               | $\kappa \min(V_T, V^e)$ |
-|               | Block reward |     ...      |   ...   | Block reward | Cooling off for $\delta$ blocks |      Final payout       |
+| Promesse de valeur |    $V_t$     |  $V_{t+1}$   | $\dots$ |    $V_T$     |             $\dots$             |         $\dots$         |
+| Paiement       |   $w(V_t)$   | $w(V_{t+1})$ | $\dots$ |   $w(V_T)$   |               $0$               | $\kappa \min(V_T, V^e)$ |
+|               | Récompense de bloc |     ...      |   ...   | Récompense de bloc | Cooling off pour les blocs $\delta$ |      Paiement final       |
 
-Proposed parameter:
+Paramètre proposé :
 
-- $\delta = \text{blocks equivalent to 7 days}$
+- $\delta = \text{blocs équivalents à 7 jours}$
 
-### Update of $V$
+### Mise à jour de $V
 
-When there's no payout or slash event:
+Quand il n'y a pas d'événement de paiement ou de slashing:
 
 $$\Delta V_t = k_p \cdot \big((\rho^m - 1) V_t + c(s_t) + \gamma(V_t)h(V_t)\big)$$
 
-- $\rho^m$ is the unconditional $V$ increment factor for worker
-- $c(s_t)$ is the operational cost to run the worker
-- $\gamma(V_t)h(V_t)$ represents a factor to compensate for accidental/unintentional slashing (ignored in simulated charts)
-- $k_p = \min(\frac{P_t}{P}, 120\\%)$, where $P_t$ is the instant performance score, and $P$ is the initial score
-- If $V > V_{max}$ after the update, it will be capped to $V_{max}$
+- $\rho^m$ est le facteur d'accroissement inconditionnel $V$ du worker
+- $c(s_t)$ est le coût opérationnel pour faire fonctionner le worker
+- $\gamma(V_t)h(V_t)$ représente un facteur de compensation pour les slashing accidentelles/non intentionnelles (ignoré dans les tableaux simulés)
+- $k_p = \min(\frac{P_t}{P}, 120\\%)$, où $P_t$ est le score de performance instantané, et $P$ est le score initial
+- If $V > V_{max}$ après la mise à jour, il sera plafonné à $V_{max}$
 
-Proposed parameters:
+Paramètres proposés :
 
-- $\rho^m_{\text{Phala}} =\rho^m_{\text{Khala}} = 1.00020$ (hourly)
+- $\rho^m_{\text{Phala}} =\rho^m_{\text{Khala}} = 1.00020$ (par heure)
 
-### Payout Event
+### Événement de paiement
 
-In order to stay within the subsidy budget, at every block the budget is distributed proportionally based on the current **_Worker Shares_**:
+Afin de respecter le budget des subventions, à chaque bloc, le budget est distribué proportionnellement sur la base des **_Participations des Workers_** actuelles :
 
 $$w(V_t) = B \frac{\text{share}}{\Sigma \text{share}}$$
 
-where $B$ is the current network subsidy budget for the given payout period.
+où $B$ est le budget actuel de subvention du réseau pour la période de paiement donnée.
 
-Whenever $w(V_t)$ is paid to a worker, his $V$ will be updated accordingly:
+Chaque fois que $w(V_t)$ aura été payé au worker, son $V$ sera mis à jour en conséquence :
 
 $$\Delta V = -min(w(V_t),V_t-V_\text{last}).$$
 
-$V_\text{last}$ is the value promised at the last payout event, or $V^e$ if this is the first payout.
+$V_\text{last}$ est la valeur promise lors du dernier paiement, ou $V^e$ si c'est le premier paiement.
 
-> The update of V is limited to ensure the payout doesn't cause $V$ to drop lower than it was in the last payout event. The limit is necessary to make sure workers are well incentives to always accumulate credits in the network. Otherwise, workers are incentivized to constantly reset their mining session if V decreases over time.
+> La mise à jour de $V$ est limitée pour s'assurer que le paiement n'entraîne pas une baisse de $V$ par rapport au dernier événement de paiement. La limite est nécessaire pour s'assurer que les workers sont bien incités à toujours accumuler des crédits dans le réseau. Sinon, les workers sont incités à réinitialiser constamment leur session de minage si $V$ diminue au fil du temps.
 
-Share represents how much the worker is paid out from $V$. We expect it will approximate the share baseline, but with minor adjustments to reflect the property of the worker:
+Share représente combien le worker est payé à partir de $V$. Nous nous attendons à ce qu'il se rapproche de la base de référence de la part, mais avec des ajustements mineurs pour refléter la propriété du worker :
 
 $$\text{share}_{\text{Baseline}} = V_t.$$
 
-$\Sigma \text{share}$ contains the share of workers which are running on Phala or Khala with the same subsidy ratio.
+$\Sigma \text{share}$ contient la part des workers qui fonctionnent sur Phala ou Khala avec le même ratio de subvention.
 
-Proposed algorithm:
+Algorithme proposé :
 
 - $\text{share}_{\text{Khala}} = \sqrt{V_t^2 + (2 P_t \cdot \text{ConfidenceScore})^2}$
 - $\text{share}_{\text{Phala}} = \sqrt{V_t^2 + (2 P_t \cdot \text{ConfidenceScore})^2}$
-- $P_t$ is the instant performance score
+- $P_t$ est le score de performance instantané
 
-### Subsidy Budget
+### Budget des subventions
 
 |                    |  Phala / Khala   |
 | ------------------ | :--------------: |
 | Relaychain         | Polkadot/ Kusama |
-| Budget for Mining  |     700 mln      |
-| Halving Period     |     180 days     |
-| Halving Discount   |       25%        |
-| Treasure Share     |       20%        |
-| First Month Reward |     21.6 mln     |
+| Budget pour le Mining  |     700 mln      |
+| Période de Halving     |     180 days     |
+| Réduction du Halving   |       25%        |
+| Partage de la trésorerie       |       20%        |
+| Récompense du premier mois |     21.6 mln     |
 
-### Heartbeat & Payout Schedule
 
-In any block $t$, if the Worker's VRF is smaller than their current Heartbeat Threshold $\gamma(V_t)$, they must send the Heartbeat transaction to the chain, which will update the on-chain record of their Value Promise and send a Mining Reward $w(V_t)$ to their reward wallet:
+### Heartbeat & Calendrier des paiements
+
+Dans n'importe quel bloc $t$, si le VRF du Worker's est plus petit que son seuil actuel de Heartbeat $\gamma(V_t)$, il doit envoyer la transaction Heartbeat à la chaîne, qui mettra à jour l'enregistrement on-chain de sa promesse de valeur et enverra une récompense de minage $w(V_t)$ à son wallet de récompense :
 
 $$\Delta V_t = - w(V_t).$$
 
-If they fail to send the Heartbeat transaction to the chain within the challenge window, the update of their value promise will be
+S'ils n'envoient pas la transaction Heartbeat à la chaîne dans la fenêtre de défi, la mise à jour de leur promesse de valeur sera
 
 $$\Delta V_t = - h(V_t),$$
 
-and their status is changed to _unresponsive_, and they will get repeatedly punished until they send a heartbeat, or stop mining. The slash amount $h$ is defined in the **_Slash_** section.
+et leur statut est changé en _unresponsive_, et ils seront punis de manière répétée jusqu'à ce qu'ils envoient un heartbeat, ou arrêtent de miner. Le montant du slash $h$ est défini dans la section **_Slash_**.
 
-The target is to process around 20 heartbeat challenges per block. The heartbeat challenge probability $\gamma(V_t)$ will be adjusted to target this number of challenges.
+L'objectif est de traiter environ 20 challenges heartbeat par bloc. La probabilité de défi de heartbeat $\gamma(V_t)$ sera ajustée pour cibler ce nombre de challenges.
 
-Potential parameters:
+Paramètres potentiels :
 
-- $\text{ChallengeWindow} = 10$ (blocks)
+- $\text{ChallengeWindow} = 10$ (blocs)
 
-### Slash rules
+### Règles de Slash
 
-The slash rules for workers are defined below. No slash rules have been implemented at the moment but will start in the near future.
+Les règles relatives au slash pour les workers sont définies ci-dessous. Aucune règle de slash n'a été mise en œuvre pour le moment, mais elle le sera dans un avenir proche.
 
-| Severity | Fault                               | Punishment                                |
+| Gravité | Défaut                               | Punition                                |
 | -------- | ----------------------------------- | ----------------------------------------- |
-| Level1   | Worker offline                      | 0.1% V per hour (deducted block by block) |
-| Level2   | Good faith with bad result          | 1% from V                                 |
-| Level3   | Malicious intent or mass error      | 10% from V                                |
-| Level4   | Serious security risk to the system | 100% from V                               |
+| Niv. 1   | Worker hors ligne                      | 0.1% $V$ par heure (déduit bloc par bloc) |
+| Niv. 2   | Bonne volonté avec mauvais résultat          | 1% de $V$                                  |
+| Niv. 3   | Intention malveillante ou erreur collective     | 10% de $V$                                |
+| Niv. 4   | Risque sérieux pour la sécurité du système | 100% de $V$                               |
 
-### Final payout
+### Paiement final
 
-When a worker chooses to disconnect from the platform, they send an Exit Transaction and receive their Severance Pay after $\delta$ blocks.
+Lorsqu'un worker choisit de se déconnecter de la plateforme, il envoie une transaction de sortie et reçoit son indemnité de départ après $\delta$ blocs.
 
-After the cooling down period, the worker gets their final payout, representing the return of the initial stake. However, if $V_T$ goes lower than the initial $V^e$, the worker will get less stake returned as a punishment:
+Après la période de cooling down, le worker reçoit son paiement final, représentant le retour de la mise initiale. Cependant, si $V_T$ est inférieur au $V^e$ initial, le worker recevra moins de récompense de staking en guise de punition :
 
 $$w(T + \sigma) = \min(\frac{V_T}{V^e}, 100\\%) \cdot S$$
 
-where $S$ is the initial stake.
+où $S$ est la mise initiale.
